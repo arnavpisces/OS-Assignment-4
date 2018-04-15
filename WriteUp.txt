@@ -1,0 +1,13 @@
+I demonstrated the synchronization in the multiple reader writer problem using pthreads and global linked list. I have used custom structures to implement linked list
+
+. I am basically for demonstration puproses initializing 3 threads, one for writing and 2 for reading (though you can set any one for any very easily). The writing one EnQueues the array ever 2 seconds which a static incrementer and the reader threads reads the whole queue element by element and circles back to the first element as the queue finishes. I have used semaphores for the implementation of locks and semaphores are pthread independent.
+The code first tries to acquire the lock and if it acquires then does the desired operation or else it waits for the lock to get freed (remember that the semaphores implemented are blocking so this is not a try-lock kind of implmentation, the thread will suspend until it gets the lock, and will wake up as soon as the lock is acquired.). I have color coded the operation done by the program and while reading, the reader TID (thread id) is also shown for easy clarification. Dequeue and EnQueue are color coded as CYAN and when the element is inserted is coded as MAGENTA and the reading part is coded as YELLOW.
+The reader thread as soon as it reaches the first element of the queue also dequeues is.
+
+To compile and test the program - Simply run make all and ./ReadWrite
+
+No inputs is required by the user as my code is self testing and self demonstrating (I have made it this way).
+
+The expected output is also self explanatory.
+
+Sometimes starvation can occur for one thread as operation aren't atomic.

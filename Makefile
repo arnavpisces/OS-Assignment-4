@@ -1,15 +1,7 @@
-all:server client poll
+all:ReadWrite
 
-client:client.c
-	gcc client.c -o client
-
-server:server.c
-	gcc server.c -o server
-
-poll:poll.c
-	gcc poll.c -o poll
+ReadWrite:ReadWrite.c
+	gcc -pthread ReadWrite.c -o ReadWrite
 
 clean:
-	rm -f server
-	rm -f client
-	rm -f poll
+	rm -f ReadWrite
